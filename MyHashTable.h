@@ -11,7 +11,7 @@
 
 class MyHashTable{
 public:  //Recuerden que esto sólo lo hacemos para poder revisar las actividades pero debería ser público
-    std::list<int> * tabla; //Arreglo dinamico que contiene linkedlists
+    std::list<std::pair<std::string , int>> * tabla; //Arreglo dinamico que contiene linkedlists ([0] = key, [1])
 
     int size;         //Cantidad de valores que hay almacenados en la tabla
     int sizeA;        //Capacidad max de la lista
