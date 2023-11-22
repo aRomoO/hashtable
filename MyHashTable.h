@@ -1,6 +1,6 @@
-//
+
 // Created by fredi on 21/11/23.
-//
+
 
 #ifndef HASHTABLE_MYHASHTABLE_H
 #define HASHTABLE_MYHASHTABLE_H
@@ -18,14 +18,14 @@ public:  //Recuerden que esto sólo lo hacemos para poder revisar las actividade
 
 
 public:
-    void rehashing(); //Crece el arreglo al doble del tamaño del arreglo actual + 1
-    int getPos(std::string key);
+    void rehashing(); //  O(n)   Crece el arreglo al doble del tamaño del arreglo actual + 1
+    int getPos(std::string key); //O(1)
 
-    MyHashTable();  //Tamaño inicial 11
+    MyHashTable();  // O(1) Tamaño inicial 11
     bool isEmpty(); //O(1)
-    void put(std::string key,int value);
-    int get(std::string key);
-    void remove(std::string key);
+    void put(std::string key,int value); // O(1) best case|avg
+    int get(std::string key);  // O(1) best case|avg
+    void remove(std::string key);  // O(1) best case|avg
 };
 
 

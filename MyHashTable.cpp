@@ -1,6 +1,5 @@
-//
+
 // Created by fredi on 21/11/23.
-//
 
 #include <iostream>
 #include <algorithm>
@@ -14,10 +13,6 @@ MyHashTable::MyHashTable(){
     // Alloc mem para cada elemento del array
     tabla = new std::list<std::pair<std::string , int>>[sizeA];
 
-    // Inicializar como lista nueva
-    /*for (int i = 0; i < sizeA -1; ++i) {
-        tabla[i] = std::list<std::pair<std::string , int>>();
-    }*/
 }
 
 bool MyHashTable::isEmpty()
@@ -103,19 +98,30 @@ int MyHashTable::get(std::string key) {
 
 
 void MyHashTable::remove(std::string key) {
-    // Get the position in the hash table
+    // obtener posicion
     int pos = getPos(key);
 
-    // Iterator to find the key in the linked list
-    auto it = std::find_if(tabla[pos].begin(), tabla[pos].end(),
-                           [key](const std::pair<std::string, int>& keyval) {
+    // iterador para encontrar el key en la linked list correspondiente a la key
+    auto it =
+            std::find_if(tabla[pos].begin(), tabla[pos].end(),
+                    [key](const std::pair<std::string, int>& keyval)
+                           {
                                return keyval.first == key;
                            });
 
-    // If the key is found, remove it from the linked list
-    if (it != tabla[pos].end()) {
+    // el iterador contiene el nodo a borrar
+        //Si se encuentra, borrarlo
+    if (it != tabla[pos].end())
+    {
         tabla[pos].erase(it);
-        // Update the size
+        // actualizar tamaño
         --size;
     }
+    else
+    {
+        // si no se encuentra, mostrar error
+        throw std::invalid_argument("No se encontró el key a borrar");
+
+    }
+
 }
