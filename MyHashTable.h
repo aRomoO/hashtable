@@ -22,7 +22,6 @@ public:
     int getPos(std::string key);
 
     MyHashTable();  //Tamaño inicial 11
-    ~MyHashTable();
     bool isEmpty(); //O(1)
     void put(std::string key,int value);
     int get(std::string key);

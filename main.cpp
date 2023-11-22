@@ -35,8 +35,7 @@ void test(MyHashTable hashTable)
 int main() {
     // Create an instance of MyHashTable
     MyHashTable hashTable;
-/*
-    // Insert a large number of key-value pairs to trigger collisions
+
     for (int i = 0; i < 1000; ++i) {
         hashTable.put("key" + std::to_string(i), i * 2);
     }
@@ -46,8 +45,20 @@ int main() {
         std::cout << "Value for key: " << i << ": " << hashTable.get("key" + std::to_string(i)) << std::endl;
         // Expected: 0, 2, 4, ..., 1998
     }
-*/
-    test(hashTable);
+
+    // Remove keys with even indices
+    for (int i = 0; i < 1000; i += 2) {
+        hashTable.remove("key" + std::to_string(i));
+    }
+
+    std::cout << "After removal:" << std::endl;
+
+    // Check if removal is successful
+    for (int i = 0; i < 1000; ++i) {
+        std::cout << "Value for key: " << i << ": " << hashTable.get("key" + std::to_string(i)) << std::endl;
+        // Expected: -1 for even indices, 2, -1, 8, ..., 1998 for odd indices
+    }
+
     return 0;
 
 }

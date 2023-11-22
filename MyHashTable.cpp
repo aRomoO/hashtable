@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include "MyHashTable.h"
 #include "list"
 
@@ -18,10 +19,7 @@ MyHashTable::MyHashTable(){
         tabla[i] = std::list<std::pair<std::string , int>>();
     }*/
 }
-MyHashTable::~MyHashTable()
-{
-    delete[] tabla;
-}
+
 bool MyHashTable::isEmpty()
 {
     return (this->size == 0);
@@ -42,12 +40,6 @@ int MyHashTable::getPos(std::string key) {
 
 void MyHashTable::put(std::string key, int value)
 {
-    //Checar si el elemento cabe, si no cabe, hacer rehashing
-    if (size >= sizeA * 0.75) {
-        rehashing();
-    }
-
-
 
     int pos = getPos(key);
 
@@ -111,5 +103,19 @@ int MyHashTable::get(std::string key) {
 
 
 void MyHashTable::remove(std::string key) {
+    // Get the position in the hash table
+    int pos = getPos(key);
 
+    // Iterator to find the key in the linked list
+    auto it = std::find_if(tabla[pos].begin(), tabla[pos].end(),
+                           [key](const std::pair<std::string, int>& keyval) {
+                               return keyval.first == key;
+                           });
+
+    // If the key is found, remove it from the linked list
+    if (it != tabla[pos].end()) {
+        tabla[pos].erase(it);
+        // Update the size
+        --size;
+    }
 }
