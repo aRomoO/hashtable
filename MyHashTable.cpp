@@ -11,7 +11,7 @@ MyHashTable::MyHashTable(){
 
     for (int i = 0; i < sizeA; ++i)
     {
-        this->tabla[i] = new std::list<int>(this->sizeA);
+        tabla[i] =  std::list<int>(this->sizeA);
     }
 }
 int MyHashTable::getPos(std::string key)
